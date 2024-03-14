@@ -1,0 +1,133 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Matkul openAPI",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://localhost:3000",
+        "description": "Development server"
+      }
+    ],
+    "paths": {
+      "/matkul": {
+        "get": {
+          "summary": "Get all matkul",
+          "responses": {
+            "200": {
+              "description": "List of matkul",
+              "content": {
+                "application/json": {
+                  "example": {
+                    "matkul": [
+                      {
+                        "id_matkul": 2,
+                        "nama_matkul": "Matematika Diskrit"
+                      },
+                      {
+                        "id_matkul": 3,
+                        "nama_matkul": "Pemrograman UI/UX"
+                      },
+                      {
+                        "id_matkul": 4,
+                        "nama_matkul": "Pemrograman API"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "post": {
+          "summary": "Add a new matkul",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nama_matkul": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Matkul added successfully"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      },
+      "/matkul/{id_matkul}": {
+        "put": {
+          "summary": "Update matkul by ID",
+          "parameters": [
+            {
+              "name": "id_matkul",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "description": "ID of the matkul to update"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nama_matkul": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Matkul updated successfully"
+            },
+            "404": {
+              "description": "Matkul not found"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Delete matkul by ID",
+          "parameters": [
+            {
+              "name": "id_matkul",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "integer"
+              },
+              "description": "ID of the matkul to delete"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Matkul deleted successfully"
+            },
+            "404": {
+              "description": "Matkul not found"
+            }
+          }
+        }
+      }
+    }
+  }
+  
